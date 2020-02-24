@@ -3,9 +3,10 @@
     <v-row>
       <v-col class="text-center">
         <role-number-choice
-          name="Nombre de joueurs :"
+          name="Joueurs :"
           :nbDefault="3"
           @newValue="newNbPlayer"
+          :player="true"
           :min="3"
           :max="20"
         ></role-number-choice>
@@ -14,16 +15,10 @@
 
     <v-row>
       <v-col class="text-center">
-        <label>Civils :</label>
-      </v-col>
-      <v-col class="text-center">{{ this.nbCivil }}</v-col>
-    </v-row>
-
-    <v-row>
-      <v-col class="text-center">
         <role-number-choice
-          name="Undercover :"
+          name="Undercover"
           @newValue="setNbUndercover"
+          :player="false"
           :min="this.minRole"
           :max="this.maxUndercover"
           :nbDefault="this.nbUndercover"
@@ -34,12 +29,20 @@
     <v-row>
       <v-col class="text-center">
         <role-number-choice
-          name="Mister White :"
+          name="Mister White"
           @newValue="setNbWhite"
+          :player="false"
           :min="this.minRole"
           :max="this.maxWhite"
           :nbDefault="this.nbWhite"
         ></role-number-choice>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col class="text-center">
+        <span class="display-3 font-weight-light" v-text="this.nbCivil"></span>
+        <span class="subheading font-weight-light mr-1">Civils</span>
       </v-col>
     </v-row>
 
@@ -107,7 +110,7 @@ export default {
         white: this.nbWhite
       });
 
-      this.$router.push('/preset');
+      this.$router.push("/preset");
     }
   }
 };
