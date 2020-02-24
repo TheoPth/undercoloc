@@ -12,15 +12,23 @@
 <script>
 import { mapGetters } from "vuex";
 
+// MODALS
+import DescribeWord from '@/components/modals/describeword.modal'; 
+
 import { Player } from "@/prototypes/player.prototype";
 import PlayerCard from "@/components/card.component";
 export default {
   name: "play",
   components: {
-    PlayerCard
+    PlayerCard,
+    DescribeWord,
   },
   computed: {
     ...mapGetters(["players", "nbPlayer", "config"]),
+  },
+  mounted () {
+    // Début de la partie
+    
   },
 };
 </script>

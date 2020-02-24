@@ -53,4 +53,17 @@ export default {
 
         return res;
     },
+
+    getIndexFirstPlayer(players, indexPrecJoueur) {
+        /**
+         * @param player : [Player]
+         * @param indexPrecJoueur : Index du précédent joueur à avoir commencer
+         * 0 si la partie vient de commencer
+         * Return le premier joueur de la liste apte à commencer
+         * Il doit : - ne pas être white
+         *           - ne pas être éliminé
+         * 
+         * @return index du premier joueur apte à commencer
+         */
+    }
 }
