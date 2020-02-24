@@ -14,19 +14,7 @@
       <v-card-title class="headline justify-center">{{this.computeShortname(this.player.name)}}</v-card-title>
       <v-card-text class="text-center display-1 font-weight-bold">{{ this.player.name }}</v-card-text>
     </v-card>
-    <!--
-    <v-card v-else flat tile class="d-flex" height="100%">
-      <v-list-item one-line class="mx-auto d-block">
-        <v-list-item-avatar :color="stringToHslColor(this.player.name)">
-          <span class="white--text headline">{{this.computeShortname(this.player.name)}}</span>
-        </v-list-item-avatar>
-      </v-list-item>
 
-      <v-row>
-        <span class="subheading font-weight-light mr-1 d-inline-flex">{{ this.player.name }}</span>
-      </v-row>
-    </v-card>
-    -->
   </div>
 </template>
 

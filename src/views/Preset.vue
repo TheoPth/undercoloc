@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
-    <span class="display-1 font-weight-light mr-3">Select your card</span>
-    <v-row>
-      <v-col cols="12" sm="6" offset-sm="3">
+    <span class="display-1 font-weight-light mr-3">Select your card ({{this.numPlayer - 1 +'/'+ this.players.length}})</span>
+    <v-row class="justify-center">
+      <v-col cols="12" sm="6" md="6" >
         <v-card flat>
           <v-container fluid>
             <v-row>
@@ -12,7 +12,7 @@
                 class="d-flex child-flex"
                 cols="3"
               >
-                <player-card :player="player" class="thumbPlayer" @click="openAskName(index)"></player-card>
+                <player-card :player="player" @click="openAskName(index)"></player-card>
               </v-col>
             </v-row>
           </v-container>
