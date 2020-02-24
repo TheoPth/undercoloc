@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <span class="display-1 font-weight-light mr-3">Select the number of players</span>
     <v-row>
       <v-col class="text-center">
         <role-number-choice
