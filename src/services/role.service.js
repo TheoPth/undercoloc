@@ -1,3 +1,5 @@
+import Roles from '../prototypes/roles.enum';
+
 export default {
     getRandomRole(players, config) {
         /**
@@ -53,4 +55,27 @@ export default {
 
         return res;
     },
+
+    getIndexFirstPlayer(players, indexPrecJoueur) {
+        /**
+         * @param player : [Player]
+         * @param indexPrecJoueur : Index du précédent joueur à avoir commencer
+         * 0 si la partie vient de commencer
+         * Return le premier joueur de la liste apte à commencer
+         * Il doit : - ne pas être white
+         *           - ne pas être éliminé
+         * 
+         * @return index du premier joueur apte à commencer
+         */
+        let index = indexPrecJoueur;
+
+        while (index < players.length) {
+            if (players[index].role != Roles.white && !players[index].isEliminated) {
+                return index;
+            }
+
+            index += 1;
+        }
+
+    }
 }
