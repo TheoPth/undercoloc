@@ -1,11 +1,8 @@
 <template>
   <v-container fluid>
-    <!-- Affiche la grille des joueurs -->
-    <v-row>
-      <v-col class="text-center" v-for="(player, index) in this.players" :key="index" cols="4">
-        <player-card :player="player" class="thumbPlayer" @click="openAskName(index)"></player-card>
-      </v-col>
-    </v-row>
+    
+    <grid-player :players="this.players" @clickCard='openAskName'></grid-player>
+    
   </v-container>
 </template>
 
@@ -13,11 +10,14 @@
 import { mapGetters } from "vuex";
 
 import { Player } from "@/prototypes/player.prototype";
-import PlayerCard from "@/components/card.component";
+
+// COMPONENTS
+import GridPlayer from "@/components/gridPlayer.component";
+
 export default {
   name: "play",
   components: {
-    PlayerCard
+    GridPlayer
   },
   computed: {
     ...mapGetters(["players", "nbPlayer", "config"]),

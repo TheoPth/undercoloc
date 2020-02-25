@@ -1,24 +1,8 @@
 <template>
   <v-container fluid>
     <span class="display-1 font-weight-light mr-3">Select your card ({{this.numPlayer - 1 +'/'+ this.players.length}})</span>
-    <v-row class="justify-center">
-      <v-col cols="12" sm="6" md="6" >
-        <v-card flat>
-          <v-container fluid>
-            <v-row>
-              <v-col
-                v-for="(player, index) in this.players"
-                :key="index"
-                class="d-flex child-flex"
-                cols="3"
-              >
-                <player-card :player="player" @click="openAskName(index)"></player-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-      </v-col>
-    </v-row>
+    
+    <grid-player :players="this.players" @clickCard='openAskName'></grid-player>
 
     <!-- Les modals utilisés dans la phase d'inscription des joueurs. 
     Ils doivent être ouverts via leur nom pour s'afficher (.show())-->
@@ -44,7 +28,7 @@ import { Player } from "@/prototypes/player.prototype";
 import AskNameModal from "@/components/modals/askname.modal";
 import ShowWord from "@/components/modals/showword.modal";
 import NewPlayerTurn from "@/components/modals/newplayerturn.modal";
-import PlayerCard from "@/components/card.component";
+import GridPlayer from "@/components/gridPlayer.component";
 
 // ROLES
 import RoleService from "@/services/role.service";
@@ -56,7 +40,7 @@ export default {
     AskNameModal,
     ShowWord,
     NewPlayerTurn,
-    PlayerCard
+    GridPlayer,
   },
   data() {
     return {
