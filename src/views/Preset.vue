@@ -1,19 +1,21 @@
 <template>
   <v-container fluid>
-    <!-- Affiche la grille des joueurs -->
-    <v-row>
-      <v-col class="text-center" v-for="(player, index) in this.players" :key="index" cols="4">
-        <player-card :player='player' class="thumbPlayer" @click="openAskName(index)"></player-card>
-      </v-col>
-    </v-row>
+    <span class="display-1 font-weight-light mr-3">Select your card ({{this.numPlayer - 1 +'/'+ this.players.length}})</span>
+    
+    <grid-player :players="this.players" @clickCard='openAskName'></grid-player>
 
     <!-- Les modals utilisés dans la phase d'inscription des joueurs. 
     Ils doivent être ouverts via leur nom pour s'afficher (.show())-->
-    <show-word ref="showWord" :player='this.players[this.currentCard]' @before-close="this.showWord"></show-word>
+    <show-word
+      ref="showWord"
+      :player="this.players[this.currentCard]"
+      @before-close="this.showWord"
+    ></show-word>
 
     <ask-name-modal ref="askNameModal" @before-close="this.retrieveName"></ask-name-modal>
 
     <new-player-turn ref="newPlayerTurn" :currentTurn="this.numPlayer"></new-player-turn>
+
   </v-container>
 </template>
 
@@ -26,7 +28,7 @@ import { Player } from "@/prototypes/player.prototype";
 import AskNameModal from "@/components/modals/askname.modal";
 import ShowWord from "@/components/modals/showword.modal";
 import NewPlayerTurn from "@/components/modals/newplayerturn.modal";
-import PlayerCard from "@/components/card.component";
+import GridPlayer from "@/components/gridPlayer.component";
 
 // ROLES
 import RoleService from "@/services/role.service";
@@ -38,21 +40,24 @@ export default {
     AskNameModal,
     ShowWord,
     NewPlayerTurn,
-    PlayerCard,
+    GridPlayer,
   },
   data() {
     return {
-      currentCard: undefined,
+      currentCard: undefined
     };
   },
   computed: {
     ...mapGetters(["players", "nbPlayer", "config", "words"]),
-      
-      // Permet d'afficher le numéro du joueur qui va s'inscrire
-      numPlayer() {
-        return this.players.length - this.players.filter(player => player.role == Roles.player).length + 1;
-      }
-    
+
+    // Permet d'afficher le numéro du joueur qui va s'inscrire
+    numPlayer() {
+      return (
+        this.players.length -
+        this.players.filter(player => player.role == Roles.player).length +
+        1
+      );
+    }
   },
 
   methods: {
@@ -83,7 +88,7 @@ export default {
         player: player,
         index: this.currentCard
       });
-      
+
       this.$refs.showWord.show();
     },
 
@@ -91,9 +96,11 @@ export default {
       /**
        * S'execute après la fermeture du modal "ask-name-modal"
        */
-      
+
       // Fin de l'inscription d'un joueur. Nouvelle inscription si reste joueur sans role
-      if (this.players.filter(player => player.role == Roles.player).length > 0) {
+      if (
+        this.players.filter(player => player.role == Roles.player).length > 0
+      ) {
         this.newPlayer();
       } else {
         this.endPreset();
@@ -101,8 +108,8 @@ export default {
     },
 
     endPreset() {
-      this.$router.push('/play');
-    } 
+      this.$router.push("/play");
+    }
   },
 
   mounted() {
@@ -122,9 +129,4 @@ export default {
 </script>
 
 <style>
-.thumbPlayer {
-  width: 100px;
-  height: 100px;
-  margin: auto;
-}
 </style>

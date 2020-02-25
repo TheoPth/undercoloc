@@ -4,9 +4,9 @@
       <v-container fluid>
         <v-row class="pa-4">
           <v-col cols="12">
-            <v-text-field v-if="this.name == ''" v-model="name" placeholder="Votre nom" type="text"></v-text-field>
+            <v-text-field v-if="this.name == ''" counter="20" maxlength="20" v-model="name" placeholder="Votre nom" type="text"></v-text-field>
             <!-- permet le submit seulement si un nom est rentré -->
-            <v-text-field v-else v-model="name" placeholder="Votre nom" type="text" v-on:keyup.enter="validateName"></v-text-field>
+            <v-text-field v-else v-model="name" counter="20" maxlength="20"   placeholder="Votre nom" type="text" v-on:keyup.enter="validateName"></v-text-field>
           </v-col>
           <v-col cols="12" class="text-center">
             <v-btn v-if="this.name == ''" color="disabled">Lire mon mot</v-btn>
@@ -26,7 +26,8 @@ export default {
   data() {
     return {
         // Le nom que le joueur est en train de fournir
-      name: ""
+      name: "",
+      
     };
   },
   props: {

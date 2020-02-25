@@ -1,14 +1,8 @@
 <template>
   <v-container fluid>
-    <!-- Affiche la grille des joueurs -->
-    <v-row>
-      <v-col class="text-center" v-for="(player, index) in this.players" :key="index" cols="4">
-        <player-card :player="player" class="thumbPlayer" @click="openAskName(index)"></player-card>
-      </v-col>
-    </v-row>
-
-    <!-- Les modals doivent être ouverts pour être visibles (.show()) -->
-    <describe-word ref="describeWord" :player='this.startingPlayer'></describe-word>
+    
+    <grid-player :players="this.players" @clickCard='openAskName'></grid-player>
+    
   </v-container>
 </template>
 
@@ -22,18 +16,14 @@ import DescribeWord from '@/components/modals/describeword.modal';
 import RoleService from '@/services/role.service';
 
 import { Player } from "@/prototypes/player.prototype";
-import PlayerCard from "@/components/card.component";
+
+// COMPONENTS
+import GridPlayer from "@/components/gridPlayer.component";
 
 export default {
   name: "play",
   components: {
-    PlayerCard,
-    DescribeWord,
-  },
-  data() {
-      return {
-          startingPlayer: undefined
-      }
+    GridPlayer
   },
   computed: {
     ...mapGetters(["players", "nbPlayer", "config"]),
