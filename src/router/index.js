@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Homepage from '../views/Homepage.vue'
 import Preset from '../views/Preset.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+    {
         path: '/',
+        name: 'home',
+        component: Homepage
+    },{
+        path: '/play',
         name: 'home',
         component: Home
     },
