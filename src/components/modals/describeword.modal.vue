@@ -29,13 +29,13 @@ export default {
   props: {
     beforeClose: {
       type: Function,
-      default: () => new Player(),
+      default: () => undefined,
     },
     
     // Affiche le nom du joueur qui commence à décrire son mot
-    currentTurn: {
+    player: {
       type: Object,
-      default: {},
+      default: () => new Player(),
     },
   },
   methods: {
